@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -91,11 +87,65 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  html {
+    scroll-behavior: smooth;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-opensans;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4 text-mrto-navy;
+  }
+  
+  .section-subtitle {
+    @apply text-lg md:text-xl mb-12 text-mrto-gray max-w-3xl mx-auto;
+  }
+  
+  .btn-primary {
+    @apply bg-mrto-navy text-white hover:bg-blue-800 py-3 px-6 rounded-md transition-all font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-mrto-gold text-mrto-navy hover:bg-yellow-500 py-3 px-6 rounded-md transition-all font-medium;
+  }
+  
+  .card {
+    @apply bg-white p-6 rounded-lg shadow-md transition-all;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300;
+  }
+}
+
+.slide-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.slide-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.slide-delay-3 {
+  animation-delay: 0.6s;
+}
+
+.slide-delay-4 {
+  animation-delay: 0.8s;
+}
+
+.slide-delay-5 {
+  animation-delay: 1s;
 }
