@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+      className={`fixed w-full z-40 transition-all duration-300 backdrop-blur-md ${
+        isScrolled ? 'bg-white/80 shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -60,7 +60,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="md:hidden backdrop-blur-md bg-white/90 shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <MobileNavLink href="#home" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</MobileNavLink>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { 
   Globe, Users, Briefcase, HandHelping, 
-  Building, HardHat, Utensils, HeartPulse 
+  Building, HardHat, Utensils, HeartPulse, CheckCircle2
 } from 'lucide-react';
 
 const services = [
@@ -87,7 +87,7 @@ const ServicesSection = () => {
                 <ul className="mt-auto space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <span className="h-5 w-5 mr-2 text-mrto-gold flex-shrink-0">•</span>
+                      <CheckCircle2 className="h-5 w-5 mr-2 text-mrto-gold flex-shrink-0" />
                       <span className="text-sm text-mrto-gray">{feature}</span>
                     </li>
                   ))}
@@ -95,6 +95,24 @@ const ServicesSection = () => {
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Services Image Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-16 opacity-0 animate-slide-up slide-delay-3">
+          <div className="rounded-xl overflow-hidden shadow-lg h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
+              alt="Global recruitment" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-lg h-64">
+            <img 
+              src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb" 
+              alt="Immigration support" 
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
         
         {/* Industries Section */}

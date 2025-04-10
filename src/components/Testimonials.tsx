@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const testimonials = [
   {
@@ -35,27 +36,25 @@ const testimonials = [
     rating: 5,
     text: 'Finding reliable construction workers for our international projects was always challenging until we partnered with MRTO. Their thorough vetting process and attention to detail ensure we receive workers who are not only skilled but also dedicated to quality work and safety protocols.'
   },
+  {
+    id: 5,
+    name: 'Sophia Williams',
+    position: 'Nurse in Canada',
+    image: 'https://images.unsplash.com/photo-1491349174775-aaafddd81942',
+    rating: 5,
+    text: 'MRTO helped me fulfill my dream of working as a nurse in Canada. They guided me through every step of the process, from certification verification to immigration paperwork. Their personalized support made a complex process feel manageable.'
+  },
+  {
+    id: 6,
+    name: 'James Rodriguez',
+    position: 'Hospitality Director, Luxury Resorts',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+    rating: 4,
+    text: 'The staff MRTO provided for our resort have consistently exceeded expectations. They arrive with a solid understanding of hospitality standards and adapt quickly to our specific requirements. Their ongoing support and quality checks ensure continued success.'
+  },
 ];
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-  
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-  
-  const goToTestimonial = (index: number) => {
-    setCurrentIndex(index);
-  };
-
   return (
     <section id="testimonials" className="section-padding bg-gradient-to-b from-mrto-lightGray to-white">
       <div className="container mx-auto px-4">
@@ -66,8 +65,8 @@ const Testimonials = () => {
           </p>
         </div>
         
-        {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
+        {/* Featured Testimonial */}
+        <div className="max-w-5xl mx-auto mb-16">
           <div className="relative pb-10">
             {/* Large Quote Icon */}
             <div className="absolute -top-10 left-0 text-mrto-gold/20">
@@ -80,8 +79,8 @@ const Testimonials = () => {
                 {/* Image */}
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-mrto-gold/30 flex-shrink-0">
                   <img 
-                    src={testimonials[currentIndex].image} 
-                    alt={testimonials[currentIndex].name} 
+                    src={testimonials[0].image} 
+                    alt={testimonials[0].name} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -94,55 +93,69 @@ const Testimonials = () => {
                         key={i}
                         size={18}
                         className={`${
-                          i < testimonials[currentIndex].rating 
+                          i < testimonials[0].rating 
                             ? 'text-mrto-gold fill-mrto-gold' 
                             : 'text-gray-300'
                         }`}
                       />
                     ))}
                   </div>
-                  <p className="text-mrto-gray italic mb-6">"{testimonials[currentIndex].text}"</p>
+                  <p className="text-mrto-gray italic mb-6">"{testimonials[0].text}"</p>
                   <div>
-                    <h4 className="font-bold text-mrto-navy">{testimonials[currentIndex].name}</h4>
-                    <p className="text-sm text-mrto-gray">{testimonials[currentIndex].position}</p>
+                    <h4 className="font-bold text-mrto-navy">{testimonials[0].name}</h4>
+                    <p className="text-sm text-mrto-gray">{testimonials[0].position}</p>
                   </div>
                 </div>
               </div>
             </div>
-            
-            {/* Navigation Arrows */}
-            <div className="flex justify-between absolute -bottom-4 left-0 right-0">
-              <button 
-                onClick={prevTestimonial}
-                className="bg-white shadow-md rounded-full p-3 text-mrto-navy hover:bg-mrto-navy hover:text-white transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button 
-                onClick={nextTestimonial}
-                className="bg-white shadow-md rounded-full p-3 text-mrto-navy hover:bg-mrto-navy hover:text-white transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
-          
-          {/* Indicators */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-mrto-gold w-6' : 'bg-mrto-navy/20'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
           </div>
         </div>
+        
+        {/* Testimonials Carousel */}
+        <Carousel className="w-full max-w-6xl mx-auto">
+          <CarouselContent>
+            {testimonials.slice(1).map((testimonial) => (
+              <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3 p-1">
+                <div className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col">
+                  <div className="text-mrto-gold mb-2">
+                    <Quote size={24} />
+                  </div>
+                  <p className="text-mrto-gray italic text-sm mb-4 flex-grow">"{testimonial.text.substring(0, 150)}..."</p>
+                  <div className="flex items-center mt-auto pt-4 border-t border-gray-100">
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-3">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-mrto-navy">{testimonial.name}</h5>
+                      <p className="text-xs text-mrto-gray">{testimonial.position}</p>
+                    </div>
+                    <div className="flex ml-auto">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={12}
+                          className={`${
+                            i < testimonial.rating 
+                              ? 'text-mrto-gold fill-mrto-gold' 
+                              : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="flex justify-center mt-8">
+            <CarouselPrevious className="relative static left-0 right-auto -translate-y-0 mr-2" />
+            <CarouselNext className="relative static left-0 right-auto -translate-y-0" />
+          </div>
+        </Carousel>
       </div>
     </section>
   );
