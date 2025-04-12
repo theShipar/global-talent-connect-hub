@@ -1,7 +1,6 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Quote, Star } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const testimonials = [
   {
@@ -55,6 +54,66 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    
+    const scrollContainer = scrollRef.current;
+    let isScrolling = false;
+    
+    const scroll = () => {
+      if (!isScrolling) return;
+      
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 10) {
+        // If we're near the end, jump back to start without animation
+        scrollContainer.classList.remove('scroll-smooth');
+        scrollContainer.scrollLeft = 0;
+        setTimeout(() => {
+          scrollContainer.classList.add('scroll-smooth');
+        }, 50);
+      } else {
+        // Normal smooth scrolling
+        scrollContainer.scrollLeft += 1;
+      }
+      
+      requestAnimationFrame(scroll);
+    };
+    
+    // Start the infinite scroll after a delay
+    const timer = setTimeout(() => {
+      isScrolling = true;
+      scrollContainer.classList.add('scroll-smooth');
+      requestAnimationFrame(scroll);
+    }, 2000);
+    
+    // Pause scrolling when user interacts
+    const pauseScroll = () => {
+      isScrolling = false;
+    };
+    
+    const resumeScroll = () => {
+      setTimeout(() => {
+        isScrolling = true;
+        requestAnimationFrame(scroll);
+      }, 5000); // Resume after 5 seconds of inactivity
+    };
+    
+    scrollContainer.addEventListener('mouseenter', pauseScroll);
+    scrollContainer.addEventListener('mouseleave', resumeScroll);
+    scrollContainer.addEventListener('touchstart', pauseScroll);
+    scrollContainer.addEventListener('touchend', resumeScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      isScrolling = false;
+      scrollContainer.removeEventListener('mouseenter', pauseScroll);
+      scrollContainer.removeEventListener('mouseleave', resumeScroll);
+      scrollContainer.removeEventListener('touchstart', pauseScroll);
+      scrollContainer.removeEventListener('touchend', resumeScroll);
+    };
+  }, []);
+
   return (
     <section id="testimonials" className="section-padding bg-gradient-to-b from-mrto-lightGray to-white">
       <div className="container mx-auto px-4">
@@ -65,68 +124,18 @@ const Testimonials = () => {
           </p>
         </div>
         
-        {/* Feature Testimonials Carousel */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id}>
-                  <div className="relative pb-10 px-4">
-                    {/* Large Quote Icon */}
-                    <div className="absolute -top-10 left-4 text-mrto-gold/20">
-                      <Quote size={80} />
-                    </div>
-                    
-                    {/* Testimonial Card */}
-                    <div className="relative bg-white rounded-xl shadow-lg p-6 md:p-10 z-10 border border-mrto-gold/10">
-                      <div className="flex flex-col md:flex-row gap-6 items-center">
-                        {/* Image */}
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-mrto-gold/30 flex-shrink-0">
-                          <img 
-                            src={testimonial.image} 
-                            alt={testimonial.name} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        
-                        {/* Content */}
-                        <div className="flex-1">
-                          <div className="flex items-center mb-3">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                size={18}
-                                className={`${
-                                  i < testimonial.rating 
-                                    ? 'text-mrto-gold fill-mrto-gold' 
-                                    : 'text-gray-300'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <p className="text-mrto-gray italic mb-6">"{testimonial.text}"</p>
-                          <div>
-                            <h4 className="font-bold text-mrto-navy">{testimonial.name}</h4>
-                            <p className="text-sm text-mrto-gray">{testimonial.position}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-8">
-              <CarouselPrevious className="relative static left-0 right-auto -translate-y-0 mr-4 bg-mrto-navy text-white hover:bg-mrto-gold hover:text-mrto-navy" />
-              <CarouselNext className="relative static left-0 right-auto -translate-y-0 bg-mrto-navy text-white hover:bg-mrto-gold hover:text-mrto-navy" />
-            </div>
-          </Carousel>
-        </div>
-        
-        {/* Testimonial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          {testimonials.slice(0, 3).map((testimonial) => (
-            <div key={testimonial.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all transform hover:-translate-y-1 duration-300 border border-gray-100">
+        {/* Infinite Scrolling Testimonials */}
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-6 pb-6 hide-scrollbar"
+          style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
+        >
+          {/* Duplicate testimonials for infinite scroll effect */}
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <div 
+              key={`${testimonial.id}-${index}`}
+              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all transform hover:-translate-y-1 duration-300 border border-gray-100 flex-shrink-0 w-[300px] md:w-[350px]"
+            >
               <div className="text-mrto-gold mb-3">
                 <Quote size={24} />
               </div>

@@ -15,7 +15,11 @@ const AirplaneLoader = () => {
               <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-mrto-gold/20 rounded-br-full animate-pulse delay-450"></div>
             </div>
             <div className="w-20 h-20 rounded-full border-4 border-mrto-gold/40 flex items-center justify-center z-10 bg-white">
-              <Globe className="text-mrto-navy animate-spin-slow" size={36} />
+              <img 
+                src="/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png" 
+                alt="MRTO Logo" 
+                className="h-14 w-14 object-contain"
+              />
             </div>
             <MapPin className="absolute top-1 left-1/2 -translate-x-1/2 text-mrto-gold animate-bounce" size={16} />
             <MapPin className="absolute bottom-1 right-1 text-mrto-navy animate-bounce" size={16} />

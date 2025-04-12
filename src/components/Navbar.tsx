@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,10 +30,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center">
-            <div className={`p-2 rounded-full ${isScrolled ? 'bg-mrto-navy/10' : 'bg-white/10'} backdrop-blur-sm`}>
-              <Globe className={`${isScrolled ? 'text-mrto-navy' : 'text-white'} mr-2`} size={28} />
-            </div>
-            <span className={`font-poppins font-bold text-xl md:text-2xl ml-2 ${isScrolled ? 'text-mrto-navy' : 'text-white'}`}>MRTO</span>
+            <img 
+              src="/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png" 
+              alt="MRTO Logo" 
+              className="h-12 md:h-14" 
+            />
           </a>
 
           {/* Desktop Navigation */}
