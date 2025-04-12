@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-40 transition-all duration-300 backdrop-blur-md ${
-        isScrolled ? 'bg-white/80 shadow-md py-2' : 'bg-transparent py-4'
+      className={`fixed w-full z-40 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -38,7 +38,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className={`hidden md:flex items-center space-x-1 rounded-full py-1 px-2 ${isScrolled ? 'bg-white/50' : 'bg-white/10'} backdrop-blur-md`}>
+          <div className={`hidden md:flex items-center space-x-1 rounded-full py-1 px-2 ${isScrolled ? 'bg-white/50' : 'bg-white'}`}>
             <NavLink isScrolled={isScrolled} href="#home">Home</NavLink>
             <NavLink isScrolled={isScrolled} href="#about">About Us</NavLink>
             <NavLink isScrolled={isScrolled} href="#services">Services</NavLink>
@@ -50,12 +50,12 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 rounded-full ${isScrolled ? 'bg-mrto-navy/10' : 'bg-white/10'} backdrop-blur-sm`}
+            className={`md:hidden p-2 rounded-full ${isScrolled ? 'bg-mrto-navy/10' : 'bg-mrto-navy/10'}`}
           >
             {mobileMenuOpen ? (
-              <X className={`${isScrolled ? 'text-mrto-navy' : 'text-white'}`} size={24} />
+              <X className="text-mrto-navy" size={24} />
             ) : (
-              <Menu className={`${isScrolled ? 'text-mrto-navy' : 'text-white'}`} size={24} />
+              <Menu className="text-mrto-navy" size={24} />
             )}
           </button>
         </div>
@@ -63,7 +63,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden backdrop-blur-md bg-white/90 shadow-lg">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <MobileNavLink href="#home" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</MobileNavLink>
@@ -83,9 +83,7 @@ const NavLink = ({ isScrolled, href, children }: { isScrolled: boolean, href: st
   return (
     <a 
       href={href}
-      className={`font-poppins font-medium transition-colors px-4 py-2 rounded-full hover:bg-mrto-gold/20 ${
-        isScrolled ? 'text-mrto-navy' : 'text-white'
-      }`}
+      className="font-poppins font-medium transition-colors px-4 py-2 rounded-full hover:bg-mrto-gold/20 text-mrto-navy"
     >
       {children}
     </a>
