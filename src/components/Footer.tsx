@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Globe, Mail, Phone, Facebook, ArrowUp } from 'lucide-react';
+import Logo from '../assets/logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -17,8 +17,12 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-6">
-              <Globe className="text-mrto-gold mr-2" size={28} />
-              <h3 className="font-poppins font-bold text-2xl">MRTO</h3>
+              <img 
+                src={Logo} 
+                alt="MRTO Logo" 
+                className="h-12 w-auto mr-3" 
+              />
+              <h3 className="font-poppins font-bold text-2xl text-white">MRTO</h3>
             </div>
             
             <p className="text-white/80 mb-6">

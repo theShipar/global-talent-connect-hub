@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -29,7 +28,6 @@ const slides: SlideProps[] = [
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Auto rotate slides
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -48,7 +46,6 @@ const HeroSlider = () => {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Slides */}
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -56,17 +53,15 @@ const HeroSlider = () => {
             index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          {/* Background Image with Overlay */}
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-mrto-navy/80 to-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/50"></div>
           </div>
           
-          {/* Slide Content */}
           <div className="relative z-20 h-full flex items-center justify-center px-4">
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="glass bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 opacity-0 animate-fade-in slide-delay-1">
                 {slide.title}
               </h1>
@@ -82,7 +77,6 @@ const HeroSlider = () => {
         </div>
       ))}
       
-      {/* Main Tagline */}
       <div className="absolute bottom-10 left-0 right-0 z-30 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <p className="text-white text-lg md:text-xl italic font-poppins">
@@ -91,7 +85,6 @@ const HeroSlider = () => {
         </div>
       </div>
       
-      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all"
@@ -107,7 +100,6 @@ const HeroSlider = () => {
         <ChevronRight size={24} />
       </button>
       
-      {/* Slide Indicators */}
       <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center space-x-2">
         {slides.map((_, index) => (
           <button
