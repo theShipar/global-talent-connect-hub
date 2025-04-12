@@ -2,6 +2,60 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Quote, Star } from 'lucide-react';
 
+// Define the testimonial data structure
+interface Testimonial {
+  id: number;
+  name: string;
+  position: string;
+  text: string;
+  image: string;
+  rating: number;
+}
+
+// Sample testimonials data
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    position: "HR Manager, XYZ Construction",
+    text: "MRTO has been instrumental in helping us find skilled workers for our construction projects. Their candidates are well-vetted and ready to contribute from day one.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "Sarah Johnson",
+    position: "Operations Director, Global Health",
+    text: "The healthcare professionals we recruited through MRTO have exceeded our expectations. Their attention to detail in matching candidates with our requirements is commendable.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    rating: 5
+  },
+  {
+    id: 3,
+    name: "Mohammed Al-Farsi",
+    position: "Hotel Manager, Luxury Resorts",
+    text: "Finding qualified hospitality staff was a challenge until we partnered with MRTO. Their candidates bring both skills and cultural understanding to our international clientele.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+    rating: 4
+  },
+  {
+    id: 4,
+    name: "Rebecca Chen",
+    position: "Factory Supervisor, Textile Inc.",
+    text: "The garment workers MRTO placed with us have strong technical skills and excellent work ethic. Our productivity has increased significantly since hiring through them.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
+    rating: 5
+  },
+  {
+    id: 5,
+    name: "David Wilson",
+    position: "Project Manager, Building Solutions",
+    text: "I appreciate MRTO's transparency and efficiency in the recruitment process. They understand our technical requirements and only send candidates who meet our criteria.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+    rating: 4
+  }
+];
+
 const Testimonials = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
