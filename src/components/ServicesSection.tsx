@@ -2,7 +2,7 @@
 import React from 'react';
 import { 
   Globe, Users, Briefcase, HandHelping, 
-  Building, HardHat, Utensils, HeartPulse, CheckCircle2
+  Building, HardHat, Utensils, HeartPulse, CheckCircle2 
 } from 'lucide-react';
 
 const services = [
@@ -10,7 +10,7 @@ const services = [
     id: 1,
     title: "Global Recruitment & Immigration Support",
     description: "Connects Bangladeshi job seekers with employment opportunities worldwide through streamlined immigration processes.",
-    icon: <Globe className="w-10 h-10 text-mrto-navy" />,
+    icon: <Globe className="w-14 h-14 text-mrto-gold" />,
     features: [
       "Specialized in sectors like garments, construction, hospitality, healthcare, cleaning, catering and electrical work.",
       "Assistance with visa processing, relocation, and pre-departure orientation.",
@@ -21,7 +21,7 @@ const services = [
     id: 2,
     title: "Talent Acquisition for Employers",
     description: "Provides rigorously screened, skilled, and experienced workers tailored to your business needs.",
-    icon: <Users className="w-10 h-10 text-mrto-navy" />,
+    icon: <Users className="w-14 h-14 text-mrto-gold" />,
     features: [
       "Customized recruitment solutions based on employer requirements.",
       "Risk reduction through extensive candidate vetting.",
@@ -32,7 +32,7 @@ const services = [
     id: 3,
     title: "Inclusive Workforce Solutions",
     description: "Works with both skilled professionals and individuals who show dedication and passion for learning.",
-    icon: <Briefcase className="w-10 h-10 text-mrto-navy" />,
+    icon: <Briefcase className="w-14 h-14 text-mrto-gold" />,
     features: [
       "Balance of experience and potential in candidate selection.",
       "Client satisfaction prioritization through quality matches.",
@@ -43,7 +43,7 @@ const services = [
     id: 4,
     title: "End-to-End Support",
     description: "Complete assistance throughout the recruitment and placement process for both employers and job seekers.",
-    icon: <HandHelping className="w-10 h-10 text-mrto-navy" />,
+    icon: <HandHelping className="w-14 h-14 text-mrto-gold" />,
     features: [
       "For Job Seekers: Job matching, immigration guidance, and travel logistics.",
       "For Employers: Compliance with international hiring standards and onboarding support.",
@@ -53,10 +53,10 @@ const services = [
 ];
 
 const industries = [
-  { name: "Construction", icon: <HardHat className="w-6 h-6" /> },
-  { name: "Hospitality", icon: <Utensils className="w-6 h-6" /> },
-  { name: "Manufacturing", icon: <Building className="w-6 h-6" /> },
-  { name: "Healthcare", icon: <HeartPulse className="w-6 h-6" /> }
+  { name: "Construction", icon: <HardHat className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd" },
+  { name: "Hospitality", icon: <Utensils className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945" },
+  { name: "Manufacturing", icon: <Building className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1533750088811-7a8b16218df7" },
+  { name: "Healthcare", icon: <HeartPulse className="w-8 h-8" />, image: "https://images.unsplash.com/photo-1504439904031-93ded9f93e4e" }
 ];
 
 const ServicesSection = () => {
@@ -76,58 +76,55 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div 
               key={service.id} 
-              className="card card-hover border border-gray-100 opacity-0 animate-slide-up"
+              className="bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden opacity-0 animate-slide-up"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <div className="flex flex-col h-full">
-                <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-mrto-navy mb-3">{service.title}</h3>
-                <p className="text-mrto-gray mb-4">{service.description}</p>
-                
-                <ul className="mt-auto space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 mr-2 text-mrto-gold flex-shrink-0" />
-                      <span className="text-sm text-mrto-gray">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="bg-gradient-to-r from-mrto-navy/10 to-mrto-gold/10 p-6 flex items-center justify-center">
+                  {service.icon}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-mrto-navy mb-3">{service.title}</h3>
+                  <p className="text-mrto-gray mb-4">{service.description}</p>
+                  
+                  <ul className="mt-auto space-y-3">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start group">
+                        <CheckCircle2 className="h-5 w-5 mr-3 text-mrto-gold flex-shrink-0 transform group-hover:scale-110 transition-transform" />
+                        <span className="text-sm text-mrto-gray">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           ))}
-        </div>
-        
-        {/* Services Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-16 opacity-0 animate-slide-up slide-delay-3">
-          <div className="rounded-xl overflow-hidden shadow-lg h-64">
-            <img 
-              src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
-              alt="Global recruitment" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-xl overflow-hidden shadow-lg h-64">
-            <img 
-              src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb" 
-              alt="Immigration support" 
-              className="w-full h-full object-cover"
-            />
-          </div>
         </div>
         
         {/* Industries Section */}
         <div className="mt-20">
           <h3 className="text-2xl font-bold text-mrto-navy text-center mb-10">Industries We Serve</h3>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {industries.map((industry, index) => (
               <div 
                 key={index} 
-                className="flex flex-col items-center p-6 border border-gray-100 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all card-hover opacity-0 animate-slide-up"
+                className="relative group h-64 rounded-lg overflow-hidden opacity-0 animate-slide-up"
                 style={{ animationDelay: `${index * 0.1 + 0.6}s` }}
               >
-                <div className="text-mrto-gold mb-3">{industry.icon}</div>
-                <h4 className="font-medium text-mrto-navy">{industry.name}</h4>
+                <img 
+                  src={industry.image} 
+                  alt={industry.name} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-mrto-navy/90 to-transparent flex flex-col items-center justify-end p-6">
+                  <div className="text-mrto-gold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {industry.icon}
+                  </div>
+                  <h4 className="font-semibold text-white text-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                    {industry.name}
+                  </h4>
+                </div>
               </div>
             ))}
           </div>

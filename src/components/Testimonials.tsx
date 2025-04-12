@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import React from 'react';
+import { Quote, Star } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const testimonials = [
@@ -65,97 +65,101 @@ const Testimonials = () => {
           </p>
         </div>
         
-        {/* Featured Testimonial */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="relative pb-10">
-            {/* Large Quote Icon */}
-            <div className="absolute -top-10 left-0 text-mrto-gold/20">
-              <Quote size={80} />
+        {/* Feature Testimonials Carousel */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id}>
+                  <div className="relative pb-10 px-4">
+                    {/* Large Quote Icon */}
+                    <div className="absolute -top-10 left-4 text-mrto-gold/20">
+                      <Quote size={80} />
+                    </div>
+                    
+                    {/* Testimonial Card */}
+                    <div className="relative bg-white rounded-xl shadow-lg p-6 md:p-10 z-10 border border-mrto-gold/10">
+                      <div className="flex flex-col md:flex-row gap-6 items-center">
+                        {/* Image */}
+                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-mrto-gold/30 flex-shrink-0">
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.name} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1">
+                          <div className="flex items-center mb-3">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                size={18}
+                                className={`${
+                                  i < testimonial.rating 
+                                    ? 'text-mrto-gold fill-mrto-gold' 
+                                    : 'text-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <p className="text-mrto-gray italic mb-6">"{testimonial.text}"</p>
+                          <div>
+                            <h4 className="font-bold text-mrto-navy">{testimonial.name}</h4>
+                            <p className="text-sm text-mrto-gray">{testimonial.position}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8">
+              <CarouselPrevious className="relative static left-0 right-auto -translate-y-0 mr-4 bg-mrto-navy text-white hover:bg-mrto-gold hover:text-mrto-navy" />
+              <CarouselNext className="relative static left-0 right-auto -translate-y-0 bg-mrto-navy text-white hover:bg-mrto-gold hover:text-mrto-navy" />
             </div>
-            
-            {/* Testimonial Card */}
-            <div className="relative bg-white rounded-xl shadow-lg p-6 md:p-10 z-10">
-              <div className="flex flex-col md:flex-row gap-6 items-center">
-                {/* Image */}
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-mrto-gold/30 flex-shrink-0">
+          </Carousel>
+        </div>
+        
+        {/* Testimonial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          {testimonials.slice(0, 3).map((testimonial) => (
+            <div key={testimonial.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all transform hover:-translate-y-1 duration-300 border border-gray-100">
+              <div className="text-mrto-gold mb-3">
+                <Quote size={24} />
+              </div>
+              <p className="text-mrto-gray italic text-sm mb-4 line-clamp-4">"{testimonial.text}"</p>
+              <div className="flex items-center mt-4 pt-4 border-t border-gray-100">
+                <div className="w-12 h-12 rounded-full overflow-hidden mr-3">
                   <img 
-                    src={testimonials[0].image} 
-                    alt={testimonials[0].name} 
+                    src={testimonial.image} 
+                    alt={testimonial.name} 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                
-                {/* Content */}
-                <div className="flex-1">
-                  <div className="flex items-center mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={18}
-                        className={`${
-                          i < testimonials[0].rating 
-                            ? 'text-mrto-gold fill-mrto-gold' 
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-mrto-gray italic mb-6">"{testimonials[0].text}"</p>
-                  <div>
-                    <h4 className="font-bold text-mrto-navy">{testimonials[0].name}</h4>
-                    <p className="text-sm text-mrto-gray">{testimonials[0].position}</p>
-                  </div>
+                <div>
+                  <h5 className="font-semibold text-mrto-navy">{testimonial.name}</h5>
+                  <p className="text-xs text-mrto-gray">{testimonial.position}</p>
+                </div>
+                <div className="flex ml-auto">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={12}
+                      className={`${
+                        i < testimonial.rating 
+                          ? 'text-mrto-gold fill-mrto-gold' 
+                          : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-        
-        {/* Testimonials Carousel */}
-        <Carousel className="w-full max-w-6xl mx-auto">
-          <CarouselContent>
-            {testimonials.slice(1).map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3 p-1">
-                <div className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col">
-                  <div className="text-mrto-gold mb-2">
-                    <Quote size={24} />
-                  </div>
-                  <p className="text-mrto-gray italic text-sm mb-4 flex-grow">"{testimonial.text.substring(0, 150)}..."</p>
-                  <div className="flex items-center mt-auto pt-4 border-t border-gray-100">
-                    <div className="w-12 h-12 rounded-full overflow-hidden mr-3">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-mrto-navy">{testimonial.name}</h5>
-                      <p className="text-xs text-mrto-gray">{testimonial.position}</p>
-                    </div>
-                    <div className="flex ml-auto">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={12}
-                          className={`${
-                            i < testimonial.rating 
-                              ? 'text-mrto-gold fill-mrto-gold' 
-                              : 'text-gray-300'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="flex justify-center mt-8">
-            <CarouselPrevious className="relative static left-0 right-auto -translate-y-0 mr-2" />
-            <CarouselNext className="relative static left-0 right-auto -translate-y-0" />
-          </div>
-        </Carousel>
       </div>
     </section>
   );

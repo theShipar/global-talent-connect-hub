@@ -90,7 +90,7 @@ const WorkSteps = () => {
   }, []);
 
   return (
-    <section id="work-steps" className="section-padding bg-mrto-navy text-white">
+    <section id="work-steps" className="section-padding bg-gradient-to-b from-mrto-navy to-mrto-navy/90 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Work Process</h2>
@@ -120,31 +120,28 @@ const WorkSteps = () => {
               >
                 {/* Content */}
                 <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm shadow-lg">
-                    <h3 className="text-xl font-bold mb-3 text-mrto-gold flex items-center">
-                      <span className="bg-mrto-gold text-mrto-navy w-8 h-8 rounded-full flex items-center justify-center mr-3 md:hidden">
-                        {step.id}
-                      </span>
+                  <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm shadow-lg border border-white/10 hover:bg-white/15 transition-all duration-300">
+                    <div className="inline-block px-3 py-1 bg-mrto-gold text-mrto-navy rounded-full text-sm font-semibold mb-3">
+                      Step {step.id}
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-mrto-gold">
                       {step.title}
                     </h3>
                     <p className="text-white/80">{step.description}</p>
                   </div>
                 </div>
                 
-                {/* Icon & Number - Mobile View */}
+                {/* Icon - Mobile View */}
                 <div className="md:hidden flex justify-center">
-                  <div className="bg-mrto-gold/20 p-3 rounded-full">
+                  <div className="bg-mrto-gold/20 p-3 rounded-full border border-mrto-gold/30">
                     {step.icon}
                   </div>
                 </div>
                 
-                {/* Icon & Number - Desktop View */}
+                {/* Icon - Desktop View */}
                 <div className="hidden md:flex md:w-1/2 justify-center relative z-10">
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/4">
-                    <div className="w-12 h-12 bg-mrto-gold rounded-full flex items-center justify-center text-mrto-navy font-bold relative">
-                      {step.id}
-                    </div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-mrto-gold/20 w-16 h-16 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-mrto-gold/20 rounded-full flex items-center justify-center border-2 border-mrto-gold relative">
                       {step.icon}
                     </div>
                   </div>

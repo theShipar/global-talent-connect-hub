@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Plane } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SlideProps {
   image: string;
@@ -106,11 +106,6 @@ const HeroSlider = () => {
       >
         <ChevronRight size={24} />
       </button>
-      
-      {/* Airplane Animation */}
-      <div className="absolute top-20 z-30 w-full overflow-hidden pointer-events-none">
-        <Plane className="text-white/60 animate-fly-right" size={36} />
-      </div>
       
       {/* Slide Indicators */}
       <div className="absolute bottom-6 left-0 right-0 z-30 flex justify-center space-x-2">

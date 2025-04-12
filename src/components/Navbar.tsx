@@ -30,12 +30,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center">
-            <Globe className="text-mrto-navy mr-2" size={28} />
-            <span className={`font-poppins font-bold text-xl md:text-2xl ${isScrolled ? 'text-mrto-navy' : 'text-white'}`}>MRTO</span>
+            <div className={`p-2 rounded-full ${isScrolled ? 'bg-mrto-navy/10' : 'bg-white/10'} backdrop-blur-sm`}>
+              <Globe className={`${isScrolled ? 'text-mrto-navy' : 'text-white'} mr-2`} size={28} />
+            </div>
+            <span className={`font-poppins font-bold text-xl md:text-2xl ml-2 ${isScrolled ? 'text-mrto-navy' : 'text-white'}`}>MRTO</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className={`hidden md:flex items-center space-x-1 rounded-full py-1 px-2 ${isScrolled ? 'bg-white/50' : 'bg-white/10'} backdrop-blur-md`}>
             <NavLink isScrolled={isScrolled} href="#home">Home</NavLink>
             <NavLink isScrolled={isScrolled} href="#about">About Us</NavLink>
             <NavLink isScrolled={isScrolled} href="#services">Services</NavLink>
@@ -47,7 +49,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden"
+            className={`md:hidden p-2 rounded-full ${isScrolled ? 'bg-mrto-navy/10' : 'bg-white/10'} backdrop-blur-sm`}
           >
             {mobileMenuOpen ? (
               <X className={`${isScrolled ? 'text-mrto-navy' : 'text-white'}`} size={24} />
@@ -80,7 +82,7 @@ const NavLink = ({ isScrolled, href, children }: { isScrolled: boolean, href: st
   return (
     <a 
       href={href}
-      className={`font-poppins font-medium transition-colors hover:text-mrto-gold ${
+      className={`font-poppins font-medium transition-colors px-4 py-2 rounded-full hover:bg-mrto-gold/20 ${
         isScrolled ? 'text-mrto-navy' : 'text-white'
       }`}
     >
