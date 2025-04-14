@@ -61,12 +61,12 @@ const industries = [
   { 
     name: "Hospitality", 
     icon: <Utensils className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28f8e?q=80&w=1374&auto=format&fit=crop" 
+    image: "/lovable-uploads/9ac2b25c-ac5b-4181-a398-cf85b69ec322.png"
   },
   { 
     name: "Manufacturing", 
     icon: <Building className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1624872902815-23f24dbfa93e?q=80&w=1376&auto=format&fit=crop" 
+    image: "/lovable-uploads/a3999541-8abc-4b99-bc09-784337fd49f2.png"
   },
   { 
     name: "Healthcare", 
