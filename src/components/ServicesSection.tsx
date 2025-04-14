@@ -56,22 +56,22 @@ const industries = [
   { 
     name: "Construction", 
     icon: <HardHat className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1470&auto=format&fit=crop"
+    image: "/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png"
   },
   { 
     name: "Hospitality", 
     icon: <Utensils className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28f8e?q=80&w=1374&auto=format&fit=crop" 
+    image: "/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png" 
   },
   { 
     name: "Manufacturing", 
     icon: <Building className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1624872902815-23f24dbfa93e?q=80&w=1376&auto=format&fit=crop" 
+    image: "/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png" 
   },
   { 
     name: "Healthcare", 
     icon: <HeartPulse className="w-8 h-8" />, 
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1480&auto=format&fit=crop" 
+    image: "/lovable-uploads/5179a7d8-f437-471a-89ca-83ef894eb455.png" 
   }
 ];
 
